@@ -1,0 +1,12 @@
+- name: Play1
+  gather_facts: true
+  hosts: all
+  serial: 10
+  remote_user: root
+
+  tasks:
+    - name: Simple ping
+      ansible.builtin.ping:
+
+    - name: Simple shell
+      ansible.builtin.shell: date

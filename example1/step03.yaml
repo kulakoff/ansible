@@ -1,0 +1,20 @@
+- name: Simple playbook steep02
+  gather_facts: true
+  hosts: all
+  serial: 10
+  remote_user: root
+
+  tasks:
+    - name: Simple ping
+      ansible.builtin.ping:
+
+    - name: Simple shell
+      ansible.builtin.shell: hostname
+      register: result
+
+    - name: Install the sngrep on all machines except target01
+      ansible.builtin.apt:
+        name: sngrep
+        state: present
+        update_cache: yes
+      #when: '"target01" not in result.stdout'
