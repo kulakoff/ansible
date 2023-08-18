@@ -1,0 +1,10 @@
+- name: Playbook for Web Services initialization
+  gather_facts: true
+  hosts: site-web
+  serial: 10
+  remote_user: root
+
+  tasks:
+    - name: Install the OS packages
+      ansible.builtin.apt:
+        name
