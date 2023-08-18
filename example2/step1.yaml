@@ -1,6 +1,6 @@
 - name: Playbook for Web Services initialization
   gather_facts: true
-  hosts: site-web
+  hosts: web-backend
   serial: 10
   remote_user: root
 
