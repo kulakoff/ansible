@@ -28,6 +28,14 @@
         update: false
       notify:
         - Restart UUID
+    - name: Set permissions on UUID project
+      ansible.builtin.file:
+        path: /home/uuid/uuid-service
+        state: directory
+        recurse: yes
+        owner: uuid
+        group: uuid
+        
   handlers:
     - name: Restart Nginx
       ansible.builtin.service:
