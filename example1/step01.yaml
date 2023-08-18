@@ -1,6 +1,6 @@
 - name: Play1
   gather_facts: true
-  hosts: all
+  hosts: web-1
   serial: 10
   remote_user: root
 

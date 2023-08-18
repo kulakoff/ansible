@@ -15,3 +15,25 @@
           - python3-pip
         state: present
         update_cache: yes
+    - name: Add user for UUID service
+      ansible.builtin.user:
+        name: uuid
+        shell: /bin/bash
+        create_home: true
+    - name: Clone UUID repository
+      ansible.builtin.git:
+        repo: https://github.com/unix-way-project/uuid-service.git
+        dest: /home/uuid/uuid-service
+        version: main
+        update: false
+      notify:
+        - Restart UUID
+  handlers:
+    - name: Restart Nginx
+      ansible.builtin.service:
+        name: nginx
+        state: restarted
+    - name: Restart UUID
+      ansible.builtin.service:
+        name: uuid
+        state: restarted
