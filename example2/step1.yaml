@@ -35,7 +35,14 @@
         recurse: yes
         owner: uuid
         group: uuid
-        
+
+    - name: Install Python packages for UUID project
+      ansible.builtin.pip:
+        requirements: /home/uuid/uuid-service/sources/requirements.txt
+        state: present
+        executable: pip3
+      notify:
+        - Restart UUID
   handlers:
     - name: Restart Nginx
       ansible.builtin.service:
