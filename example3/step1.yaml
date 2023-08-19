@@ -13,6 +13,13 @@
         state: present
         update_cache: yes
 
+
+    - name: Start haproxy service
+      ansible.builtin.systemd:
+        state: started
+        enabled: yes
+        daemon_reload: yes
+        name: haproxy
     - name: Copy haproxy configuration for Load Balancer service
       ansible.builtin.copy:
         src: haproxy.cfg
@@ -23,12 +30,6 @@
       notify:
         - Restart Haproxy
 
-    - name: Start haproxy service
-      ansible.builtin.systemd:
-        state: started
-        enabled: yes
-        daemon_reload: yes
-        name: haproxy
 
   handlers:
     - name: Restart Haproxy
